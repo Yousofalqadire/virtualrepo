@@ -23,14 +23,14 @@ namespace api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Refliction>>> GetREflictions()
         {
-           var result = await db.Reflictions.ToListAsync();
+           var result = await db.Reflections.ToListAsync();
            return Ok(result);
         }
         [HttpPost("creat-Refliction")]
         public async Task<ActionResult<Refliction>> CreatRefliction([FromBody]Refliction model)
         {
           var result = new Refliction{Text = model.Text,Date =model.Date};
-          await  db.Reflictions.AddAsync(result);
+          await  db.Reflections.AddAsync(result);
           await db.SaveChangesAsync();
             return Ok(result);
         }

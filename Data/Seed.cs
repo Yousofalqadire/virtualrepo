@@ -12,7 +12,7 @@ namespace api.Data
     {
         public static async Task SeedReflictions(ApplicationDbContext db)
         {
-            if( await db.Reflictions.AnyAsync()) return;
+            if( await db.Reflections.AnyAsync()) return;
             var reflictionsDataSource = await System.IO.File.ReadAllTextAsync("Data/seedData/reflictions.json");
             var reflictions = JsonSerializer.Deserialize<List<Refliction>>(reflictionsDataSource); 
             await db.AddRangeAsync(reflictions);

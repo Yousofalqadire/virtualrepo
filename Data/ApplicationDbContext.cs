@@ -1,3 +1,4 @@
+using System;
 using api.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Options;
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Refliction> Reflictions { get; set; }
+        public DbSet<Refliction> Reflections { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<Tutorial> Tutorials { get; set; }
         public DbSet<HomeWork> HomeWorks { get; set; }
@@ -16,6 +17,8 @@ using Microsoft.Extensions.Options;
 
         public ApplicationDbContext(DbContextOptions options):base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+            AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
         }
          protected override void OnModelCreating(ModelBuilder builder)
     {
